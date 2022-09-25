@@ -1,8 +1,21 @@
-import React from "react";
+import React{ useState } from "react";
 import { TextInput, View, Text, Button } from "react-native";
 import ResultImc from "../ResultImc";
 
 export default function Form () {
+
+    const [height, setHeight] = useState(null);
+    const [weight, setWeight] = useState(null);
+    const [messageImc, setMessageImc] = useState("Preencha com o peso e a altura");
+    const [imc, setImc] = useState(null);
+    // Deixando a texto do botao dinamico
+    const [textButton, setTextButton] = useState("Calcular");
+
+    // Calculo do IMC
+    function imcCalculator () {
+        return setImc((weight/(height * height)));
+    }
+
     return (
         <View>
             <View>
@@ -18,7 +31,7 @@ export default function Form () {
                 </TextInput>
                 <Button title="CALCULAR IMC"/>
             </View>
-            <ResultImc messageResultImc={ messageImc } ResultImc={ Imc }/>
+            <ResultImc messageResultImc={ messageImc } ResultImc={ imc }/>
         </View>
     );
 

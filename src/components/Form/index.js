@@ -1,4 +1,4 @@
-import React{ useState } from "react";
+import React, { useState } from "react";
 import { TextInput, View, Text, Button } from "react-native";
 import ResultImc from "../ResultImc";
 
@@ -13,7 +13,15 @@ export default function Form () {
 
     // Calculo do IMC
     function imcCalculator () {
-        return setImc((weight/(height * height)));
+        // TOFIXED - resultado com 2 casas decimais
+        return setImc((weight/(height * height)).toFixed(2));
+    }
+
+    // Fuuncao de validacao
+    function validationImc() {
+        if (weight != null && height!= null) {
+
+        }
     }
 
     return (

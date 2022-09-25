@@ -20,7 +20,7 @@ export default function Form () {
     // Fuuncao de validacao
     function validationImc() {
         if (weight != null && height!= null) {
-
+            // TODO : TERMINAR DE FAZER
         }
     }
 

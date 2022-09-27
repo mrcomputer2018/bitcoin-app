@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { TextInput, View, Text, Button } from "react-native";
+import { TextInput, View, Text, Button, TouchableOpacity  } from "react-native";
 import ResultImc from "../ResultImc";
+import styles from "./style";
 
 export default function Form () {
 
@@ -20,26 +21,44 @@ export default function Form () {
     // Fuuncao de validacao
     function validationImc() {
         if (weight != null && height!= null) {
-            // TODO : TERMINAR DE FAZER
+            imcCalculator();
+            setHeight(null);
+            setWeight(null);
+            setMessageImc("Seu IMC é igual:");
+            setTextButton("Calcular novamente");
+            return;
         }
+
+        setImc(null);
+        setTextButton("Calcular");
+        setMessageImc("Preencha o peso e a altra!!!");
     }
 
     return (
-        <View>
-            <View>
-                <Text>Altura</Text>
-                <TextInput 
+        <View style={ styles.formContext }>
+            <View style={ styles.Form }>
+                <Text style={ styles.FormLabel }>Altura</Text>
+                <TextInput  style={ styles.FormInput }
+                    onChangeText={ setHeight }
+                    value={ height }
                     placeholder="ex. 1.75"
                     keyboardType="numeric">
                 </TextInput>
-                <Text>Peso</Text>
-                <TextInput 
+                <Text style={ styles.FormLabel }>Peso</Text>
+                <TextInput style={ styles.FormInput }
+                    onChangeText={ setWeight }
+                    value={ weight } 
                     placeholder="ex. 75.0"
                     keyboardType="numeric">
                 </TextInput>
-                <Button title="CALCULAR IMC"/>
+                <TouchableOpacity style={ styles.ButtonCaculator }
+                    onPress={() => { validationImc()} }>
+                    <Text style={ styles.TextButtonCaculator } >
+                        { textButton }
+                    </Text>
+                </TouchableOpacity>
             </View>
-            <ResultImc messageResultImc={ messageImc } ResultImc={ imc }/>
+            <ResultImc messageResultImc={ messageImc } resultImc={ imc }/>
         </View>
     );
 
